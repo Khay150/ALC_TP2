@@ -110,17 +110,3 @@ def metodoMonteCarlo(A, repeticiones=250):
     desvio_estandar = np.std(autovalores)
     
     return promedio, desvio_estandar
-
-
-A1 = np.array([[0.186, 0.521, 0.014, 0.32, 0.134], [0.24, 0.073, 0.219, 0.013, 0.327], [0.098, 0.12, 0.311, 0.302, 0.208], [0.173, 0.03, 0.133, 0.14, 0.074], [0.303, 0.256, 0.323, 0.225, 0.257]])
-
-
-A2 =  np.array([[0.186, 0.521, 0.014, 0.32, 0.134], [0.24, 0.073, 0.219, 0.013, 0.327], [0.098, 0.12, 0.311, 0.302, 0.208], [0.173, 0.03, 0.133, 0.14, 0.074], [0.303, 0.256, 0.323, 0.225, 0.257]])
-
-
-promedio_A1, desvio_A1 = metodoMonteCarlo(A1)
-promedio_A2, desvio_A2 = metodoMonteCarlo(A2)
-
-print("Matriz | Promedio Autovalor | Desvío Estándar")
-print(f"A1     | {promedio_A1:.4f}            | {desvio_A1:.4f}")
-print(f"A2     | {promedio_A2:.4f}            | {desvio_A2:.4f}")
