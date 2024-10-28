@@ -83,7 +83,7 @@ def inversaLU(matriz):
 #%%
 
 
-def metodoPotencia(A, iteraciones=100, tol=1e-6):
+def metodoPotencia(A, iteraciones=250, tol=1e-6):
     x = np.random.rand(A.shape[0])
     x /= norm(x)
     
