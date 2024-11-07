@@ -84,29 +84,45 @@ def inversaLU(matriz):
 
 
 def metodoPotencia(A, iteraciones=250, tol=1e-6):
-    x = np.random.rand(A.shape[0])
-    x /= norm(x)
     
-    autovalor_anterior = 0
+    x = np.random.rand(A.shape[0]) # Se genera un vector inicial aleatorio con la misma dimensión que A
+    
+    x /= norm(x) # Se normaliza el vector x
+    
+    autovalor_anterior = 0 # Inicializamos el autovalor anterior para comparar con la tolerancia
+    
+    # Realizamos todas las iteraciones
     for i in range(iteraciones):
-        x = A @ x
-        x = x/norm(x)
         
-        autovalor = x.T @ A @ x
+        x = A @ x # Multiplicamos A por x para aproximar el autovector
+        
+        x = x/norm(x) # Normalizamos el nuevo vector x
+        
+        autovalor = x.T @ A @ x # Se calcula el autovalor asociado
+        
+        # Verificamos si la diferencia entre el autovalor actual y el anterior es menor que la tolerancia
         if abs(autovalor - autovalor_anterior) < tol:
-            break
-        autovalor_anterior = autovalor
+            
+            break # Si es menor, el bucle se rompe
+        
+        autovalor_anterior = autovalor  # Actualizamos el valor del autovalor anterior
 
-    return autovalor
+    return autovalor # Se devuelve el autovalor encontrado
 
 
 def metodoMonteCarlo(A, repeticiones=250):
-    autovalores = []
-    for _ in range(repeticiones):
-        autovalor = metodoPotencia(A)
-        autovalores.append(autovalor)
-
-    promedio = np.mean(autovalores)
-    desvio_estandar = np.std(autovalores)
     
-    return promedio, desvio_estandar
+    autovalores = [] # Lista para almacenar los autovalores calculados en cada repetición
+    
+    # Repeticiones multiples veces el método de la potencia
+    for _ in range(repeticiones):
+        
+        autovalor = metodoPotencia(A) # Se calcula un autovalor usando el método de la potencia
+        
+        autovalores.append(autovalor) # Añadimos el autovalor calculado a la lista
+
+    promedio = np.mean(autovalores) # Se calcula el promedio de los autovalores obtenidos
+    
+    desvio_estandar = np.std(autovalores)  # Se calcula el desvío estándar de los autovalores obtenidos
+    
+    return promedio, desvio_estandar # Se devuelve el promedio y el desvío estándar de los autovalores
